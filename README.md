@@ -78,5 +78,5 @@ SELECT COUNT(marks) AS marks_count FROM students;
 
 ---
 <div align="center">
-  Submitted by: Vijayapandian T | Elevate Labs SQL Internship Task 5
+  Submitted by: Vijayapandian T | Elevate Labs SQL Internship Task 5  
 </div>
