@@ -1,146 +1,82 @@
-# Task 5 – Aggregate Functions & GROUP BY (SQL)
+# 📊 Elevate Labs - SQL Task 5
+Welcome to SQL Task 5 of my Elevate Labs internship! This project demonstrates intermediate SQL querying techniques, focusing on aggregate functions, grouping data, and filtering grouped results.
 
-## Task Overview
+## 🎯 Task Objective
+The primary goal of this task is to:
+- **Aggregate Data:** Use functions like `COUNT`, `SUM`, `AVG`, `MIN`, and `MAX` to perform statistical analysis.
+- **Group Data:** Group rows that have the same values using `GROUP BY`.
+- **Filter Groups:** Apply the `HAVING` clause to filter aggregated results.
+- **Differentiate Filtering:** Understand the difference between `WHERE` (filters rows before grouping) and `HAVING` (filters groups).
+- **Handle Nulls:** Understand how aggregate functions handle `NULL` values.
 
-This task focuses on understanding and implementing SQL **Aggregate Functions**
-and the **GROUP BY** clause to perform statistical analysis on structured data.
+## 🛠️ Prerequisites
+To successfully run the scripts in this project, ensure you have the following:
+- **SQL Server:** MySQL, MariaDB, or any compatible SQL engine.
+- **SQL Client:** A command-line interface (CLI) or a graphical tool like MySQL Workbench.
 
-The task is part of an internship learning program and helps build real-world
-database querying skills required for backend development, data analysis, and interviews.
+## 🏗️ Database Schema
+The project uses a `students` table to demonstrate aggregation and grouping techniques.
 
----
+**`students` Table Structure**
+| Column Name | Data Type | Description |
+| :--- | :--- | :--- |
+| `id` | INT | Primary Key (Auto Increment) |
+| `name` | VARCHAR(50) | Student Name |
+| `age` | INT | Student Age |
+| `email` | VARCHAR(100) | Email Address |
+| `department` | VARCHAR(50) | Department Name |
+| `marks` | INT | Student Marks |
 
-## Objective
+## 💻 How to Use
+1. Open your SQL client.
+2. Load the `task5.sql` script.
+3. Execute the script sequentially to:
+   - Create the `task5` database.
+   - Create the `students` table.
+   - Insert the sample data.
+   - Run the various aggregate and grouping queries.
 
-- Learn how aggregate functions work in SQL
-- Understand grouping of data using GROUP BY
-- Apply HAVING to filter grouped results
-- Analyze real-world datasets statistically
+## 🚀 Key Operations
 
----
+### 1. Basic Aggregate Functions
+```sql
+SELECT COUNT(*) AS total_students FROM students;
+SELECT SUM(marks) AS total_marks FROM students;
+SELECT AVG(marks) AS average_marks FROM students;
+SELECT MIN(marks) AS minimum_marks, MAX(marks) AS maximum_marks FROM students;
+```
 
-## 🛠 Tools Used
+### 2. Grouping Data (GROUP BY)
+```sql
+SELECT department, COUNT(*) AS total_students FROM students GROUP BY department;
+SELECT department, AVG(marks) AS avg_marks FROM students GROUP BY department;
+```
 
-- MySQL Workbench (Primary Tool)
-- Alternative tools:
-  - PostgreSQL
-  - BigQuery Sandbox
+### 3. Filtering Grouped Data (HAVING)
+```sql
+SELECT department, COUNT(*) AS total_students FROM students GROUP BY department HAVING COUNT(*) > 2;
+SELECT department, AVG(marks) AS avg_marks FROM students GROUP BY department HAVING AVG(marks) > 80;
+```
 
-No paid tools were used.
+### 4. WHERE vs HAVING
+```sql
+-- WHERE filters rows BEFORE grouping
+SELECT department, COUNT(*) AS total_students FROM students WHERE age > 18 GROUP BY department;
 
----
+-- HAVING filters AFTER grouping
+SELECT department, COUNT(*) AS total_students FROM students GROUP BY department HAVING COUNT(*) > 1;
+```
 
-## 🗄 Database Details
+### 5. NULL Handling
+```sql
+-- COUNT ignores NULL values in specific columns
+SELECT COUNT(marks) AS marks_count FROM students;
+```
 
-### Database Name
-
-`task5`
-
-### Table Name
-
-`students`
-
-### Table Structure
-
-| Column Name || Data Type || Description |
-
-| id |         | INT |      | Primary Key |
-| name |       | VARCHAR |  | Student Name |
-| age |        | INT |      | Student Age |
-| email |      | VARCHAR |  | Email Address |
-| department | | VARCHAR |  | Department Name |
-| marks |      | INT |      | Student Marks |
-
-## 📥 Data Insertion
-
-Sample student records were inserted to simulate real-world academic data.
-NULL values were intentionally included to understand how aggregates behave.
-
-## Concepts Covered
-
-### Aggregate Functions
-
-- `COUNT()` – Counts rows
-- `SUM()` – Adds values
-- `AVG()` – Finds average
-- `MIN()` – Finds minimum
-- `MAX()` – Finds maximum
-
-### GROUP BY
-
-Used to group rows that have the same values in specified columns.
-
-Example:
-
-- Students grouped by age
-
-- Students grouped by department
-
----
-
-### HAVING Clause
-
-Used to filter aggregated/grouped data.
-
-Example:
-
-- Departments with more than 2 students
-
-- Departments with average marks greater than 80
+> [!TIP]
+> You can execute the different `SELECT` queries individually to observe how aggregate functions calculate values and how `GROUP BY` and `HAVING` manipulate the result set.
 
 ---
-
-### WHERE vs HAVING
-
-     | WHERE |                  | HAVING |
-
-| Filters rows |             | Filters groups |
-| Executed before GROUP BY | | Executed after GROUP BY |
-| Cannot use aggregates |    | Can use aggregates |
-
----
-
-### NULL Handling
-
-- `COUNT(*)` counts all rows
-- `COUNT(column)` ignores NULL values
-- Other aggregates ignore NULL automatically
-
----
-
-## Real-World Use Cases
-
-- Department-wise employee count
-- Monthly sales analysis
-- Average marks per class
-- Customer-wise order totals
-- Product category analysis
-
-## Repository Structure
-
-Task5-Aggregate-Functions/
-│
-├── task5.sql
-├── README.md
-
-## Final Outcome
-
-By completing this task, the intern is able to:
-
-- Perform statistical analysis using SQL
-- Write optimized aggregate queries
-- Understand SQL execution order
-- Answer interview questions confidently
-
-## Interview Questions Covered
-
-- Difference between WHERE and HAVING
-- Can aggregates be used without GROUP BY?
-- How COUNT handles NULL values?
-- Why HAVING exists?
-- Real-world use of GROUP BY
-
-## Conclusion
-
-This task builds a strong foundation in SQL data analysis, which is essential
-for backend development, data science, and database-driven applications.
+<div align="center">
+  Submitted by: Vijayapandian T | Elevate Labs SQL Internship Task 5
+</div>
